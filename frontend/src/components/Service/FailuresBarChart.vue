@@ -93,9 +93,9 @@ export default {
             let val = series[seriesIndex][dataPointIndex];
             let ts = w.globals.seriesX[seriesIndex][dataPointIndex];
             const dt = new Date(ts).toLocaleDateString("en-us", timeoptions)
-            let ago = `${(dataPointIndex-12) * -1} hours ago`
+            let ago = `il y a ${(dataPointIndex-12) * -1} heures`
             if ((dataPointIndex-12) * -1 === 0) {
-              ago = `Current hour`
+              ago = `Heure courante`
             }
             return `<div class="chart_list_tooltip font-2 mb-4">${val-1} Failures<br>${dt}</div>`
           },

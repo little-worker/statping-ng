@@ -5,13 +5,13 @@
                 <div class="col-12">
                     <h4 class="mt-2">
                         <router-link :to="serviceLink(service)" class="d-inline-block text-truncate font-4" style="max-width: 65vw;" :in_service="service">{{service.name}}</router-link>
-                        <span class="badge float-right" :class="{'bg-success': service.online, 'bg-danger': !service.online}">{{service.online ? "ONLINE" : "OFFLINE"}}</span>
+                        <span class="badge float-right" :class="{'bg-success': service.online, 'bg-danger': !service.online}">{{service.online ? $t('online') : $t('offline')}}</span>
                     </h4>
-
                     <ServiceTopStats :service="service"/>
-
                 </div>
             </div>
+
+          <GroupServiceFailures :service="service"/>
 
             <div v-show="!expanded" v-observe-visibility="{callback: visibleChart, throttle: 200}" class="chart-container">
                 <ServiceChart :service="service" :visible="visible" :chart_timeframe="chartTimeframe"/>
@@ -53,6 +53,9 @@
                 </div>
             </div>
 
+
+          <IncidentsBlock :service="service"/>
+
         </div>
     </div>
 </template>
@@ -61,10 +64,12 @@
 const Analytics = () => import(/* webpackChunkName: "service" */ './Analytics');
 const ServiceChart  = () => import(/* webpackChunkName: "service" */ "./ServiceChart");
 const ServiceTopStats = () => import(/* webpackChunkName: "service" */ "@/components/Service/ServiceTopStats");
+const GroupServiceFailures = () => import(/* webpackChunkName: "service" */ '@/components/Index/GroupServiceFailures');
+const IncidentsBlock = () => import(/* webpackChunkName: "service" */ '@/components/Index/IncidentsBlock');
 
 export default {
     name: 'ServiceBlock',
-    components: { Analytics, ServiceTopStats, ServiceChart},
+    components: { Analytics, ServiceTopStats, ServiceChart, GroupServiceFailures, IncidentsBlock },
     props: {
         service: {
             type: Object,
@@ -92,55 +97,55 @@ export default {
           interval_val: "60m",
           timeframe_val: this.timeset(259200),
           timeframes: [
-            {value: this.timeset(1800), text: "30 Minutes", set: 1},
-            {value: this.timeset(3600), text: "1 Hour", set: 2},
-            {value: this.timeset(21600), text: "6 Hours", set: 3},
-            {value: this.timeset(43200), text: "12 Hours", set: 4},
-            {value: this.timeset(86400), text: "1 Day", set: 5},
-            {value: this.timeset(259200), text: "3 Days", set: 6},
-            {value: this.timeset(604800), text: "7 Days", set: 7},
-            {value: this.timeset(1209600), text: "14 Days", set: 8},
-            {value: this.timeset(2592000), text: "1 Month", set: 9},
-            {value: this.timeset(7776000), text: "3 Months", set: 10},
-            {value: 0, text: "All Records"},
+            {value: this.timeset(1800), text: "30 minutes", set: 1},
+            {value: this.timeset(3600), text: "1 heure", set: 2},
+            {value: this.timeset(21600), text: "6 heures", set: 3},
+            {value: this.timeset(43200), text: "12 heures", set: 4},
+            {value: this.timeset(86400), text: "1 jour", set: 5},
+            {value: this.timeset(259200), text: "3 jours", set: 6},
+            {value: this.timeset(604800), text: "7 jours", set: 7},
+            {value: this.timeset(1209600), text: "14 jours", set: 8},
+            {value: this.timeset(2592000), text: "1 mois", set: 9},
+            {value: this.timeset(7776000), text: "3 mois", set: 10},
+            {value: 0, text: "Tout"},
           ],
           intervals: [
             {value: "1m", text: "1/min", set: 1},
             {value: "5m", text: "5/min", set: 2},
             {value: "15m", text: "15/min", set: 3},
             {value: "30m", text: "30/min", set: 4 },
-            {value: "60m", text: "1/hr", set: 5 },
-            {value: "180m", text: "3/hr", set: 6 },
-            {value: "360m", text: "6/hr", set: 7 },
-            {value: "720m", text: "12/hr", set: 8 },
-            {value: "1440m", text: "1/day", set: 9 },
-            {value: "4320m", text: "3/day", set: 10 },
-            {value: "10080m", text: "7/day", set: 11 },
+            {value: "60m", text: "1/h", set: 5 },
+            {value: "180m", text: "3/h", set: 6 },
+            {value: "360m", text: "6/h", set: 7 },
+            {value: "720m", text: "12/h", set: 8 },
+            {value: "1440m", text: "1/j", set: 9 },
+            {value: "4320m", text: "3/j", set: 10 },
+            {value: "10080m", text: "7/j", set: 11 },
           ],
           stats: {
                 total_failures: {
-                    title: "Total Failures",
-                    subtitle: "Last 7 Days",
+                    title: "Total échecs",
+                    subtitle: "Dernière semaine",
                     value: 0,
                 },
                 high_latency: {
-                    title: "Highest Latency",
-                    subtitle: "Last 7 Days",
+                    title: "Latence la plus haute",
+                    subtitle: "Dernière semaine",
                     value: 0,
                 },
                 lowest_latency: {
-                    title: "Lowest Latency",
-                    subtitle: "Last 7 Days",
+                    title: "Latence la plus basse",
+                    subtitle: "Dernière semaine",
                     value: 0,
                 },
                 high_ping: {
-                    title: "Highest Ping",
-                    subtitle: "Last 7 Days",
+                    title: "Ping le plus élevé",
+                    subtitle: "Dernière semaine",
                     value: 0,
                 },
                 low_ping: {
-                    title: "Lowest Ping",
-                    subtitle: "Last 7 Days",
+                    title: "Ping le plus bas",
+                    subtitle: "Dernière semaine",
                     value: 0,
                 }
             },

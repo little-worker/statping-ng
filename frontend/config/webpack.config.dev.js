@@ -51,11 +51,15 @@ const webpackConfig = merge(commonConfig, {
   proxy: {
       '/api': {
           logLevel: 'debug',
-          target: 'http://0.0.0.0:8585'
+          target: 'https://status.littleworker.fr',
+        secure: false,
+        changeOrigin: true
       },
     '/scss': {
       logLevel: 'debug',
-      target: 'http://0.0.0.0:8585'
+      target: 'https://status.littleworker.fr',
+      secure: false,
+      changeOrigin: true
     }
   }
   }

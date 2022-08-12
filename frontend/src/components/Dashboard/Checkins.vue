@@ -16,9 +16,9 @@
                     </div>
                 </div>
 
-                <span class="small">Send a GET request to this URL every {{checkin.interval}} minutes</span>
-                <span class="small float-right mt-1 mr-3 d-none d-md-block">Requested {{ago(checkin.last_hit)}} ago</span>
-                <span class="small float-right mt-1 mr-3 d-none d-md-block">Request expected every {{checkin.interval}} minutes</span>
+                <span class="small">Envoyer une demande GET à cette URL toutes les {{checkin.interval}} minutes</span>
+                <span class="small float-right mt-1 mr-3 d-none d-md-block">Demandé il y a {{ago(checkin.last_hit)}}</span>
+                <span class="small float-right mt-1 mr-3 d-none d-md-block">Demande attendue toutes les {{checkin.interval}} minutes</span>
 
                 <div class="card text-black-50 bg-white mt-3">
                     <div class="card-header text-capitalize">

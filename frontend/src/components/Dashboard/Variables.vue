@@ -105,7 +105,7 @@
         </tr>
         <tr>
             <td><kbd>{{"\{\{.Failure.DowntimeAgo\}\}"}}</kbd></td>
-            <td>35 minutes ago</td>
+            <td>il y a 35 minutes</td>
         </tr>
         <tr>
             <td><kbd>{{"\{\{.Failure.CreatedAt\}\}"}}</kbd></td>

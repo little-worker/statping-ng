@@ -86,7 +86,7 @@ const french = {
     loading: "Chargement",
     save_settings: "Enregistrer les paramètres",
     average_response: "Réponse moyenne",
-    last_uptime: "Temps de disponibilité dernier",
+    last_uptime: "Temps de disponibilité sur",
     sign_in: "Se connecter",
     last_login: "Dernière connexion",
     admin: "Admin",

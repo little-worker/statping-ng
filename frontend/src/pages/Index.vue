@@ -1,7 +1,10 @@
 <template>
     <div class="container col-md-7 col-sm-12 sm-container">
 
-      <Header/>
+      <div class="head-title">
+          <h1>{{core.name}}</h1>
+          <p class="catch-phrase">{{core.description}}</p>
+      </div>
 
       <div v-if="!loaded" class="row mt-5 mb-5">
         <div class="col-12 mt-5 mb-2 text-center">
@@ -12,27 +15,22 @@
         </div>
       </div>
 
-        <div class="col-12 full-col-12">
+        <div>
             <div v-for="service in services_no_group" v-bind:key="service.id" class="list-group online_list mb-4">
                 <div class="list-group-item list-group-item-action">
                     <router-link class="no-decoration font-3" :to="serviceLink(service)">{{service.name}}</router-link>
-                    <span class="badge float-right" :class="{'bg-success': service.online, 'bg-danger': !service.online }">{{service.online ? "ONLINE" : "OFFLINE"}}</span>
+                    <span class="badge float-right" :class="{'bg-success': service.online, 'bg-danger': !service.online }">{{service.online ? $t('online') : $t('offline')}}</span>
                     <GroupServiceFailures :service="service"/>
                     <IncidentsBlock :service="service"/>
                 </div>
             </div>
         </div>
 
-      <Group v-for="group in groups" v-bind:key="group.id" :group=group />
-        <div class="col-12 full-col-12">
-            <MessageBlock v-for="message in messages" v-bind:key="message.id" :message="message" />
-        </div>
+      <div>
+        <MessageBlock v-for="message in messages" v-bind:key="message.id" :message="message" />
+      </div>
 
-        <div class="col-12 full-col-12">
-            <div v-for="service in services" :ref="service.id" v-bind:key="service.id">
-                <ServiceBlock :service="service" />
-            </div>
-        </div>
+      <Group v-for="group in groups" v-bind:key="group.id" :group=group />
 
     </div>
 </template>
@@ -41,7 +39,6 @@
 import Api from "@/API";
 
 const Group = () => import(/* webpackChunkName: "index" */ '@/components/Index/Group')
-const Header = () => import(/* webpackChunkName: "index" */ '@/components/Index/Header')
 const MessageBlock = () => import(/* webpackChunkName: "index" */ '@/components/Index/MessageBlock')
 const ServiceBlock = () => import(/* webpackChunkName: "index" */ '@/components/Service/ServiceBlock')
 const GroupServiceFailures = () => import(/* webpackChunkName: "index" */ '@/components/Index/GroupServiceFailures')
@@ -54,8 +51,7 @@ export default {
       GroupServiceFailures,
       ServiceBlock,
       MessageBlock,
-      Group,
-      Header
+      Group
     },
     data() {
         return {
@@ -65,11 +61,11 @@ export default {
     computed: {
       loading_text() {
         if (this.$store.getters.groups.length === 0) {
-          return "Loading Groups"
+          return "Chargement des groupes"
         } else if (this.$store.getters.services.length === 0) {
-          return "Loading Services"
+          return "Chargement des services"
         } else if (this.$store.getters.messages == null) {
-          return "Loading Announcements"
+          return "Chargement des annonces"
         }
       },
       loaded() {

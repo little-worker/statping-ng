@@ -15,9 +15,7 @@
         <div class="row mt-2">
           <div class="col-12 no-select">
             <p class="divided">
-              <span class="font-2 text-muted">90 {{$t('days_ago')}}</span>
-              <span class="divider"></span>
-              <span class="text-center font-2" :class="{'text-muted': service.online, 'text-danger': !service.online}">{{service_txt}}</span>
+              <span class="font-2 text-muted">Il y a 90 jours</span>
               <span class="divider"></span>
               <span class="font-2 text-muted">{{$t('today')}}</span>
             </p>
@@ -70,9 +68,9 @@ export default {
         this.hover_text = ""
       },
     mouseover(e) {
-      let txt = `${e.amount} Failures`
+      let txt = `${e.amount} Dysfonctionnements`
       if (e.amount === 0) {
-        txt = `No Issues`
+        txt = `Aucun problème détecté`
       }
       this.hover_text = `${e.date.toLocaleDateString()} - ${txt}`
     },

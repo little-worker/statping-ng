@@ -6,11 +6,11 @@
         <div class="col-12 mb-0">
           <div class="dates">
             <div class="start">
-              <strong>STARTS</strong> {{niceDate(message.start_on)}}
+              <strong>Début</strong> {{niceDate(message.start_on)}}
               <span></span>
             </div>
             <div class="ends">
-              <strong>ENDS</strong> {{niceDate(message.end_on)}}
+              <strong>Fin</strong> {{niceDate(message.end_on)}}
             </div>
           </div>
         </div>

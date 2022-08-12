@@ -14,10 +14,6 @@
     height: 27px;
   }
 
-  .index-chart {
-    height: 380px;
-  }
-
   .online_list {
     box-shadow: $mobile-card-shadow;
   }
@@ -101,6 +97,14 @@
         font-size: 10pt;
         padding: 10px 10px;
     }
+
+  .card-body h4 a {
+    position: relative;
+    writing-mode: horizontal-tb;
+    width: auto;
+    background: none;
+    padding: 0;
+  }
 
     .lg_number {
         font-size: 7vw;

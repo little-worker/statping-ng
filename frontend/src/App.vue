@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Header/>
     <router-view/>
     <Footer v-if="$route.path !== '/setup'"/>
   </div>
@@ -7,10 +8,12 @@
 
 <script>
   const Footer = () => import(/* webpackChunkName: "index" */ "./components/Index/Footer");
+  const Header = () => import(/* webpackChunkName: "index" */ '@/components/Index/Header')
 
   export default {
     name: 'app',
     components: {
+      Header,
       Footer
     },
     data() {

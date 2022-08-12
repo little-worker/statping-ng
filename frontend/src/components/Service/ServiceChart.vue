@@ -128,12 +128,12 @@
             enabled: true,
             custom: ({series, seriesIndex, dataPointIndex, w}) => {
               let ts = w.globals.seriesX[seriesIndex][dataPointIndex];
-              const dt = new Date(ts).toLocaleDateString("en-us", timeoptions)
+              const dt = new Date(ts).toLocaleDateString("fr", timeoptions)
               let val = series[0][dataPointIndex];
               let pingVal = series[1][dataPointIndex];
               return `<div class="chartmarker">
-<span>Average Response Time: ${this.humanTime(val)}/${this.chart_timeframe.interval}</span>
-<span>Average Ping: ${this.humanTime(pingVal)}/${this.chart_timeframe.interval}</span>
+<span>Temps de réponse moyen : ${this.humanTime(val)}/${this.chart_timeframe.interval}</span>
+<span>Ping moyen : ${this.humanTime(pingVal)}/${this.chart_timeframe.interval}</span>
 <span>${dt}</span>
 </div>`
             },
@@ -201,7 +201,7 @@
               this.ping_data = await Api.service_ping(this.service.id, this.toUnix(start), this.toUnix(end), val.interval, false)
 
             this.series = [
-                {name: "Latency", ...this.convertToChartData(this.data)},
+                {name: "Latence", ...this.convertToChartData(this.data)},
                 {name: "Ping", ...this.convertToChartData(this.ping_data)},
                 ]
             this.ready = true

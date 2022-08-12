@@ -4,7 +4,7 @@
     <div v-if="loaded && last_failure && failureBefore" class="col-12 text-danger font-2 m-0 mb-2">
       <font-awesome-icon icon="exclamation" class="mr-1 text-danger font-weight-bold" size="1x"/> Recent Failure<br>
       <span class="font-italic font-weight-light text-dim mt-1" style="max-width: 270px">
-      Last failure was {{ago(last_failure.created_at)}} ago. {{last_failure.issue}}
+      Le dernier problème à eu lieu {{ago(last_failure.created_at)}}. {{last_failure.issue}}
       </span>
     </div>
 
@@ -24,7 +24,7 @@
     <div v-if="success_event && !failureBefore" class="col-12 font-2 m-0 mb-2">
       <span class="text-success"><font-awesome-icon icon="check" class="mr-1" size="1x"/>No New Events</span>
       <span v-if="!this.isZero(service.last_error)" class="font-italic d-inline-block text-truncate text-dim mt-1" style="max-width: 270px">
-        Last failure was {{ago(service.last_error)}} ago.
+        Le dernier échec date de {{ago(service.last_error)}}.
       </span>
     </div>
 

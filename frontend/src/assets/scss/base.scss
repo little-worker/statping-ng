@@ -2,7 +2,7 @@
 @import 'mixin';
 
 .index-chart {
-  height: $service-card-height;
+  padding-left: 30px;
   /*Animation*/
   -webkit-transition: height 0.3s ease;
   -moz-transition: height 0.3s ease;
@@ -106,7 +106,7 @@
 .divided {
   display: flex;
   align-items: center;
-  margin-bottom: 0;
+  margin: 0 8px;
 }
 
 .divider {

@@ -10,7 +10,7 @@ module.exports = {
     proxy: {
       '/api': {
         logLevel: 'debug',
-        target: 'http://0.0.0.0:8585',
+        target: 'https://status.littleworker.fr/',
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''
@@ -18,7 +18,7 @@ module.exports = {
       },
       '/oauth': {
         logLevel: 'debug',
-        target: 'http://0.0.0.0:8585',
+        target: 'https://status.littleworker.fr/',
         changeOrigin: true,
         pathRewrite: {
           '^/oauth': ''

@@ -1,7 +1,8 @@
 import Vue from "vue";
 const { startOfDay, startOfHour, startOfWeek, endOfMonth, endOfHour, startOfToday, startOfTomorrow, startOfYesterday, endOfYesterday, endOfTomorrow, endOfToday, endOfDay, startOfMonth, lastDayOfMonth, subSeconds, getUnixTime, fromUnixTime, differenceInSeconds, formatDistance, addMonths, addSeconds, isWithinInterval } = require('date-fns')
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
-import format from 'date-fns/format'
+import format from 'date-fns/format';
+import { fr } from 'date-fns/locale';
 import parseISO from 'date-fns/parseISO'
 import isBefore from 'date-fns/isBefore'
 import isAfter from 'date-fns/isAfter'
@@ -28,7 +29,7 @@ export default Vue.mixin({
       return new Date.UTC(val)
     },
     ago(t1) {
-      return formatDistanceToNow(parseISO(t1))
+      return formatDistanceToNow(parseISO(t1), { locale: fr })
     },
     daysInMonth(t1) {
       return lastDayOfMonth(t1)
@@ -45,11 +46,11 @@ export default Vue.mixin({
     dur(t1, t2) {
       return formatDistance(t1, t2)
     },
-    format(val, type = "EEEE, MMM do h:mma") {
-      return format(val, type)
+    format(val, type = "PPPPp") {
+      return format(val, type, { locale: fr })
     },
     niceDate(val) {
-      return format(parseISO(val), "EEEE, MMM do h:mma")
+      return format(parseISO(val), "PPPPp", { locale: fr })
     },
     parseISO(v) {
       return parseISO(v)
@@ -103,11 +104,11 @@ export default Vue.mixin({
     },
     smallText(s) {
       if (s.online) {
-        return `${this.$t('service_online_check')} ${this.ago(s.last_success)} ago`
+        return `${this.$t('service_online_check')} il y a ${this.ago(s.last_success)}`
       } else {
         const last = s.last_failure
         if (last) {
-          return `Offline, last error: ${last} ${this.ago(last.created_at)}`
+          return `Hors ligne, dernière erreur : ${last} ${this.ago(last.created_at)}`
         }
         if (this.isZero(s.last_success)) {
           return this.$t('service_never_online')
@@ -153,7 +154,7 @@ export default Vue.mixin({
     },
     copy(txt) {
       this.$copyText(txt).then(function (e) {
-        alert('Copied: \n' + txt)
+        alert('Copié : \n' + txt)
       });
     },
     serviceLink(service) {

@@ -1,13 +1,23 @@
 @import 'variables';
 @import 'mixin';
 
-HTML,BODY {
+html, body {
   background-color: $background-color;
+  color: $text-color;
+  font-family: Lato,Helvetica,Arial,sans-serif;
+}
+
+a {
   color: $text-color;
 }
 
-A {
-  color: $text-color;
+h1 {
+  color: #000f0a;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 38px;
+  margin-bottom: 8px;
 }
 
 .modal-backdrop {
@@ -98,21 +108,50 @@ A {
 }
 
 .card-body {
-  overflow: hidden;
+  padding: 0;
 }
 
-.card-body H4 A {
+.card-body .col-12 {
+  position: inherit;
+}
+
+.card-body h4 a {
+  color: #212121;
+  text-decoration: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: #f6f6f6;
+  writing-mode: vertical-rl;
+  padding: 12px 7px;
+  height: auto;
+  width: 30px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.card-title a {
   color: $service-title;
   text-decoration: none;
 }
 
-.card-title A {
-  color: $service-title;
-  text-decoration: none;
-}
-
-.card-body .badge {
+.card-body h4 .badge {
   color: #fff;
+  position: absolute;
+  right: 14px;
+  top: 14px;
+}
+
+.incidents {
+  margin: 10px;
+}
+
+.incident {
+  padding: 10px;
+  background: #f3f3f3;
+  margin: 5px 0;
+  border-radius: 2px;
 }
 
 .dashboard_card {
@@ -155,10 +194,8 @@ A {
 }
 
 .container {
-  padding-top: 20px;
-  padding-bottom: 25px;
+  padding: 50px 0;
   max-width: $max-width;
-  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.15) !important;
   background-color: $container-color;
 }
 
