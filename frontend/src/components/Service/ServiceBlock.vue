@@ -4,7 +4,8 @@
             <div class="card-body">
                 <div class="col-12">
                     <h4 class="mt-2">
-                        <router-link :to="serviceLink(service)" class="d-inline-block text-truncate font-4" style="max-width: 65vw;" :in_service="service">{{service.name}}</router-link>
+                      <a class="d-inline-block text-truncate font-4" style="max-width: 65vw;" :in_service="service">{{service.name}}</a>
+                      <!-- <router-link :to="serviceLink(service)" class="d-inline-block text-truncate font-4" style="max-width: 65vw;" :in_service="service">{{service.name}}</router-link> -->
                         <span class="badge float-right" :class="{'bg-success': service.online, 'bg-danger': !service.online}">{{service.online ? $t('online') : $t('offline')}}</span>
                     </h4>
                     <ServiceTopStats :service="service"/>
@@ -47,9 +48,9 @@
 
 
                 <div class="col-md-2 col-6 float-right">
-                    <button v-if="!expanded" @click="setService" class="btn btn-sm float-right dyn-dark text-white" :class="{'bg-success': service.online, 'bg-danger': !service.online}">
+                    <!-- <button v-if="!expanded" @click="setService" class="btn btn-sm float-right dyn-dark text-white" :class="{'bg-success': service.online, 'bg-danger': !service.online}">
                         {{$t('view')}}
-                    </button>
+                    </button> -->
                 </div>
             </div>
 

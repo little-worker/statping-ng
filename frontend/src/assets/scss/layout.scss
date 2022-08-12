@@ -199,6 +199,10 @@ h1 {
   background-color: $container-color;
 }
 
+.container-dashboard {
+  max-width: 1024px;
+}
+
 .login_container {
   border-radius: 5px;
   box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.15) !important;
